@@ -7,13 +7,11 @@ directory = sys.argv[1]
 
 # Function to check if a word is in the file contents
 def is_word_in_file(word, file_contents):
-    word = word.lower()
     word_pattern = rf'\b{re.escape(word)}\b'  # Regular expression pattern for the word
     return bool(re.search(word_pattern, file_contents, re.IGNORECASE))  # Case-insensitive search
 
 # Function to check if a sequence of words is in the file contents in the given order
 def are_words_in_order(words, file_contents):
-    words = words.lower()
     words_pattern = r'\b' + r'\b.*\b'.join(map(re.escape, words.split())) + r'\b'  # Pattern for the sequence of words
     return bool(re.search(words_pattern, file_contents, re.IGNORECASE))  # Case-insensitive search
 
@@ -50,8 +48,6 @@ for filename in os.listdir(directory):
 
         # Check for each keyword in the text
         for keyword in keywords:
-            keyword = keyword.lower()
-            text = text.lower()
             single_word = len(keyword.split()) == 1  # Check if the keyword is a single word
             
             # Check if keyword is in the text and whether it matches the criteria based on its length
